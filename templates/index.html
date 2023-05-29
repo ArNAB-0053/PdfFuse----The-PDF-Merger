@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PDF Merger</title>
+    <link rel="icon" href="{{ url_for('static', filename='Icons/web-icon.ico') }}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #7F7F7F;
+        }
+
+        header {
+            padding: 20px 2px 20px 2px;
+            margin: 10px 2px 25px 2px;
+            width: 100%;
+            text-align: center;
+            background-attachment: fixed;
+            background-color: #FFFFFF;
+            box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .nav-home {
+            margin-left: 10vh;
+        }
+
+        main {
+            margin: 5px 50px 50px 50px;
+            background: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 5px 15px 8px rgba(0, 0, 0, 0.5);
+            background: #FFFFFF;
+            padding-left: 20vh;
+            padding-right: 20vh;
+            padding-top: 0px;
+            padding-bottom: 50px;
+        }
+
+
+        footer {
+            margin-top: 10vh;
+            /* background-color: #5C5C5C; */
+            padding: 50px 20px 50px 20px;
+            color: white;
+            text-align: center;
+            position: static;
+            bottom: 0;
+            left: 0;
+            width: 100%;  
+            background: linear-gradient(to bottom, #7F7F7F, #787878);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-container p {
+            font-size: 19px;
+            font-family:'Times New Roman', Times, serif;
+            font-style: italic;
+        }
+
+
+
+        h1 {
+            margin-bottom: 50px;
+            color: darkblue;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10vh;
+            font-weight: 900;
+            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .download-button {
+            margin-top: 20px;
+        }
+
+        .in-merge,
+        .in-download,
+        .btn-another {
+            margin-top: 25px;
+            margin-left: 5px;
+            margin-right: 5px;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 900;
+            font-family: 'Goldman', cursive;
+            border-radius: 9px;
+        }
+
+        .file-input-container {
+            border-radius: 10px;
+            box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background: linear-gradient(to top, #FFFFFF, #E7E8ED);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-input {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+            padding-left: 30px;
+            padding-right: 30px;
+            font-family: 'Merriweather', serif;
+            font-weight: 1000;
+            cursor: pointer;
+        }
+
+        
+
+        .inp-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .inp-merge {
+            /* border: 2px solid #7F7F7F; */
+            background-color: #D9D9D9;
+            border-radius: 20px;
+            box-shadow: inset 5px 5px 14px rgba(0, 0, 0, 0.3);
+            display: inline-table;
+            max-width: 100%;
+            min-width: none;
+            width: 100%;
+            padding: 17px 0px 17px 0px;
+        }
+
+
+        .img-add-pdf{
+            height: 0px;
+            display: inline-flex;
+            filter: invert();
+            margin: 2px;
+            /* opacity: 0; */
+            transition: height 0.3s ease;
+            padding-right: 5px;
+        }
+
+        .btn-another {
+            background: #FF2F2F;
+            color: #FFFFFF;
+            font-size: 27px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn-another:hover {
+            background: #333F50;
+            border-radius: 90px;
+        }
+
+        .btn-another:hover .img-add-pdf{
+            height: 25px;
+        }
+
+        .in-merge {
+            background: #4EAC08;
+            color: #FFFFFF;
+            font-weight: 900;
+            font-size: 27px;
+            transition: border-radius 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .in-merge:hover {
+            background-color: #333F50;
+            color: #FFFFFF;
+            border-radius: 90px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-merge {
+            display: inline;
+            height: 0px;
+            filter: invert();
+            margin: 2px;    
+            transition: height 0.3s ease;
+            padding-right: 5px;
+        }
+
+        .in-merge:hover .img-merge {
+            height: 25px;
+        }
+
+        .in-download {
+            margin-top: 50px;
+            border-radius: 100px;
+            background: #1EB1D4;
+            color: #FFFFFF;
+            font-weight: 900;
+            font-size: 47px;
+            transition: border-radius 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .in-download:hover {
+            background-color: #002060;
+            color: #FFFFFF;
+            border-radius: 100px;
+        }
+
+        .img-download {
+            display: inline;
+            height: 0px;
+            filter: invert();
+            margin: 2px;
+            transition: height 0.3s ease;
+            padding-right: 5px;
+        }
+
+        .in-download:hover .img-download {
+            height: 40px;
+        }
+
+
+
+
+
+        .nav-home {
+            background-color: #787878;
+            padding: 6px 40px 6px 40px;
+            color: #000000;
+            border-radius: 35px;
+            box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to top, #FFFFFF, #E7E8ED);
+            transition: background-color 0.3s ease;
+            text-shadow: none;
+        }
+
+        .nav-home:hover{
+            background: #2B4B85;
+            box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.5);
+            color: #FFFFFF;
+        }
+
+        .nav-about, .nav-profile, .nav-contact {
+            background-color: #787878;
+            padding: 6px 40px 6px 40px;
+            color: #000000;
+            border-radius: 35px;
+            background: none;
+            text-shadow: none;
+        }
+
+        .nav-contact:hover, 
+        .nav-profile:hover,
+        .nav-about:hover {
+            background: #2B4B85;
+            box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.5);
+            color: #FFFFFF;
+        }
+
+
+
+        .link-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .link-container a{
+            margin: 15px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #000000;
+            border: 2px solid black;
+            padding: 5px 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+
+        .github:hover {
+            background-color: #252525;
+            border: none;
+            color: #FFFFFF;
+            font-weight: bold;
+            border-radius: 25px;
+            padding: 5px 20px;
+
+        }
+
+        .replit:hover {
+            background-color: #F66616;
+            border: none;
+            color: #FFFFFF;
+            font-weight: bold;
+            border-radius: 25px;
+            padding: 5px 20px;
+        }
+
+        .linkedin:hover, .twitter:hover, .facebook:hover{
+            border: none;
+            background-color: #2769CB;
+            color: #FFFFFF;
+            font-weight: bold;
+            border-radius: 25px;
+            padding: 5px 20px;
+        }
+        
+        .instagram:hover {
+            background-color: #FF2D2D;
+            border: none;
+            color: #FFFFFF;
+            font-weight: bold;
+            border-radius: 25px;
+            padding: 5px 20px;
+        }
+
+        header nav a {
+            margin-left: 15px;
+            margin-right: 35px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: row;
+            text-decoration: none;
+            color: black;
+        }
+
+        .nav-item-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Audiowide", sans-serif;
+            font-weight: 800;
+            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        svg {
+            margin-right: 5px;
+        }
+
+    </style>
+
+
+
+
+
+    <script>
+        function addFileInput() {
+            var fileInputContainer = document.getElementById("file-inputs");
+            var newFileInput = document.createElement("input");
+            newFileInput.type = "file";
+            newFileInput.name = "file";
+            newFileInput.required = true;
+            newFileInput.className = "file-input";
+            fileInputContainer.appendChild(newFileInput);
+        }
+
+        function validateForm() {
+            var fileCount = document.getElementById("file-inputs").getElementsByTagName("input").length;
+            if (fileCount < 2) {
+                alert("Please select at least 2 PDF files to merge.");
+                return false;
+            }
+        }
+    </script>
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body>
+
+    <header>
+        <nav class="nav">
+
+            <div class="nav-item-container">
+
+                <a class="nav-home" href="/home"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
+                  </svg>HOME</a>
+    
+                <a class="nav-about" href="{{ url_for('about') }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-person-fill" viewBox="0 0 16 16">
+      <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm2 5.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-.245S4 12 8 12s5 1.755 5 1.755z"/>
+    </svg>ABOUT</a>
+    
+                <a class="nav-contact" href="{{ url_for('contact') }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-forward-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708z"/>
+                  </svg>CONTACT</a>
+    
+                <a class="nav-profile" href="{{ url_for('profile') }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+    </svg>PROFILE</a>
+
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <div class="container">
+            <h1>PDF MERGER</h1>
+            <form action="/" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" target="_blank">
+                <div class="inp-merge">
+                    <div class="inp-container">
+                        <div class="file-input-container" id="file-inputs">
+                            <input class="file-input" type="file" name="file" required>
+                        </div>
+                    </div>
+                    <br>
+                    
+                    <button class="btn-another" type="button" onclick="addFileInput()">
+                        <img class="img-add-pdf" src="{{ url_for('static', filename='Icons/add_pdf.png') }}">
+                        Add Another PDF
+                    </button>
+                </div>
+    
+                <br><br>
+                <button class="in-merge" type="submit" id="merge-btn" name="merge-btn">
+                    <img class="img-merge" src="{{ url_for('static', filename='Icons/merge_2.png') }}">
+                    Merge PDFs
+                </button>
+                  
+                <br>
+                <button class="in-download" type="submit" id="download-btn" name="download-btn">
+                    <img class="img-download" src="{{ url_for('static', filename='Icons/download.png') }}">
+                    Download
+                </button>
+                
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2023-@rnab. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+
+
+
+
+
+</html>
