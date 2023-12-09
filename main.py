@@ -7,7 +7,7 @@ import io
 
 app = Flask(__name__)
 
-def pdfMerger(file_list):
+def pdfMerger(file_list, output_filename):
     try:
         if len(file_list) < 2:
             return None
@@ -21,11 +21,12 @@ def pdfMerger(file_list):
         output_stream = io.BytesIO()
         merger.write(output_stream)
         output_stream.seek(0)
-        return output_stream
+        return output_stream, output_filename
 
     except Exception as e:
         print("An error occurred while merging PDF files:", e)
-        return None
+        return None, None
+
 
 @app.route("/", methods=["GET", "POST"])
 def download_pdf():
@@ -38,14 +39,14 @@ def download_pdf():
                 file.save(file.filename)
                 file_names.append(file.filename)
 
-        merged_pdf = pdfMerger(file_names)
+        merged_pdf, output_filename = pdfMerger(file_names, request.form.get("output_filename"))
 
         if 'merge-btn' in request.form:
             # Merge PDFs button was clicked
-            if merged_pdf is not None:
+            if merged_pdf is not None and output_filename:
                 return send_file(
                     merged_pdf,
-                    download_name="merged.pdf",
+                    download_name=output_filename + ".pdf",
                     as_attachment=False,
                     mimetype="application/pdf"
                 )
@@ -54,10 +55,10 @@ def download_pdf():
 
         elif 'download-btn' in request.form:
             # Download button was clicked
-            if merged_pdf is not None:
+            if merged_pdf is not None and output_filename:
                 return send_file(
                     merged_pdf,
-                    download_name="merged-pdf.pdf",
+                    download_name=output_filename + ".pdf",
                     as_attachment=True,
                     mimetype="application/pdf"
                 )

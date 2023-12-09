@@ -9,385 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Orbitron:wght@900&display=swap" rel="stylesheet">
-
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
-
-        *{
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: #7F7F7F;
-        }
-
-        header {
-            padding: 20px 2px 20px 2px;
-            margin: 10px 2px 25px 2px;
-            width: 100%;
-            text-align: center;
-            background-attachment: fixed;
-            background-color: #FFFFFF;
-            box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.5);
-        }
-
-
-        .nav-home {
-            margin-left: 10vh;
-        }
-
-        main {
-            margin: 5px 50px 50px 50px;
-            background: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            box-shadow: 5px 15px 8px rgba(0, 0, 0, 0.5);
-            background: #FFFFFF;
-            padding-left: 20vh;
-            padding-right: 20vh;
-            padding-top: 0px;
-            padding-bottom: 50px;
-        }
-
-
-        footer {
-            margin-top: 10vh;
-            /* background-color: #5C5C5C; */
-            padding: 50px 20px 50px 20px;
-            color: white;
-            text-align: center;
-            position: static;
-            bottom: 0;
-            left: 0;
-            width: 100%;  
-            background: linear-gradient(to bottom, #7F7F7F, #787878);
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .footer-container p {
-            font-size: 19px;
-            font-family:'Times New Roman', Times, serif;
-            font-style: italic;
-        }
-
-
-
-        h1 {
-            margin-bottom: 50px;
-            color: darkblue;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 10vh;
-            font-weight: 900;
-            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .container {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .download-button {
-            margin-top: 20px;
-        }
-
-        .in-merge,
-        .in-download,
-        .btn-another {
-            margin-top: 25px;
-            margin-left: 5px;
-            margin-right: 5px;
-            padding-left: 50px;
-            padding-right: 50px;
-            padding-top: 8px;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
-            border: none;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 900;
-            font-family: 'Goldman', cursive;
-            border-radius: 9px;
-        }
-
-        .file-input-container {
-            border-radius: 10px;
-            box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
-            margin-top: 20px;
-            padding-left: 25px;
-            padding-right: 25px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            background: linear-gradient(to top, #FFFFFF, #E7E8ED);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .file-input {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-            padding-left: 30px;
-            padding-right: 30px;
-            font-family: 'Merriweather', serif;
-            font-weight: 1000;
-            cursor: pointer;
-        }
-
-        
-
-        .inp-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .inp-merge {
-            /* border: 2px solid #7F7F7F; */
-            background-color: #D9D9D9;
-            border-radius: 20px;
-            box-shadow: inset 5px 5px 14px rgba(0, 0, 0, 0.3);
-            display: inline-table;
-            max-width: 100%;
-            min-width: none;
-            width: 100%;
-            padding: 17px 0px 17px 0px;
-        }
-
-
-        .img-add-pdf{
-            height: 0px;
-            display: inline-flex;
-            filter: invert();
-            margin: 2px;
-            /* opacity: 0; */
-            transition: height 0.3s ease;
-            padding-right: 5px;
-        }
-
-        .btn-another {
-            background: #FF2F2F;
-            color: #FFFFFF;
-            font-size: 27px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        .btn-another:hover {
-            background: #333F50;
-            border-radius: 90px;
-        }
-
-        .btn-another:hover .img-add-pdf{
-            height: 25px;
-        }
-
-        .in-merge {
-            background: #4EAC08;
-            color: #FFFFFF;
-            font-weight: 900;
-            font-size: 27px;
-            transition: border-radius 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        .in-merge:hover {
-            background-color: #333F50;
-            color: #FFFFFF;
-            border-radius: 90px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .img-merge {
-            display: inline;
-            height: 0px;
-            filter: invert();
-            margin: 2px;    
-            transition: height 0.3s ease;
-            padding-right: 5px;
-        }
-
-        .in-merge:hover .img-merge {
-            height: 25px;
-        }
-
-        .in-download {
-            margin-top: 50px;
-            border-radius: 100px;
-            background: #1EB1D4;
-            color: #FFFFFF;
-            font-weight: 900;
-            font-size: 47px;
-            transition: border-radius 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        .in-download:hover {
-            background-color: #002060;
-            color: #FFFFFF;
-            border-radius: 100px;
-        }
-
-        .img-download {
-            display: inline;
-            height: 0px;
-            filter: invert();
-            margin: 2px;
-            transition: height 0.3s ease;
-            padding-right: 5px;
-        }
-
-        .in-download:hover .img-download {
-            height: 40px;
-        }
-
-
-
-
-
-        .nav-home {
-            background-color: #787878;
-            padding: 6px 40px 6px 40px;
-            color: #000000;
-            border-radius: 35px;
-            box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(to top, #FFFFFF, #E7E8ED);
-            transition: background-color 0.3s ease;
-            text-shadow: none;
-        }
-
-        .nav-home:hover{
-            background: #2B4B85;
-            box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.5);
-            color: #FFFFFF;
-        }
-
-        .nav-about, .nav-profile, .nav-contact {
-            background-color: #787878;
-            padding: 6px 40px 6px 40px;
-            color: #000000;
-            border-radius: 35px;
-            background: none;
-            text-shadow: none;
-        }
-
-        .nav-contact:hover, 
-        .nav-profile:hover,
-        .nav-about:hover {
-            background: #2B4B85;
-            box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.5);
-            color: #FFFFFF;
-        }
-
-
-
-        .link-container {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-
-        .link-container a{
-            margin: 15px;
-            text-decoration: none;
-            font-size: 20px;
-            color: #000000;
-            border: 2px solid black;
-            padding: 5px 15px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-
-
-        .github:hover {
-            background-color: #252525;
-            border: none;
-            color: #FFFFFF;
-            font-weight: bold;
-            border-radius: 25px;
-            padding: 5px 20px;
-
-        }
-
-        .replit:hover {
-            background-color: #F66616;
-            border: none;
-            color: #FFFFFF;
-            font-weight: bold;
-            border-radius: 25px;
-            padding: 5px 20px;
-        }
-
-        .linkedin:hover, .twitter:hover, .facebook:hover{
-            border: none;
-            background-color: #2769CB;
-            color: #FFFFFF;
-            font-weight: bold;
-            border-radius: 25px;
-            padding: 5px 20px;
-        }
-        
-        .instagram:hover {
-            background-color: #FF2D2D;
-            border: none;
-            color: #FFFFFF;
-            font-weight: bold;
-            border-radius: 25px;
-            padding: 5px 20px;
-        }
-
-        header nav a {
-            margin-left: 15px;
-            margin-right: 35px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            flex-direction: row;
-            text-decoration: none;
-            color: black;
-        }
-
-        .nav-item-container {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-family: "Audiowide", sans-serif;
-            font-weight: 800;
-            text-shadow:  0px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        svg {
-            margin-right: 5px;
-        }
-
-    </style>
-
-
-
-
+    <link rel="stylesheet" href="../static/css/styles.css">
 
     <script>
         function addFileInput() {
@@ -399,7 +21,7 @@
             newFileInput.className = "file-input";
             fileInputContainer.appendChild(newFileInput);
         }
-
+        
         function validateForm() {
             var fileCount = document.getElementById("file-inputs").getElementsByTagName("input").length;
             if (fileCount < 2) {
@@ -408,17 +30,6 @@
             }
         }
     </script>
-
-
-
-
-
-</head>
-
-
-
-
-
 
 <body>
 
@@ -468,16 +79,23 @@
                 </div>
     
                 <br><br>
+
+                <div class="form-group merge-pdf-name">
+                    <label for="output_filename">Merged PDF name should be</label>
+                    <input type="text" id="output_filename" name="output_filename" required>
+                </div> <br>
+                
                 <button class="in-merge" type="submit" id="merge-btn" name="merge-btn">
                     <img class="img-merge" src="{{ url_for('static', filename='Icons/merge_2.png') }}">
                     Merge PDFs
-                </button>
+                </button> <br>
                   
                 <br>
                 <button class="in-download" type="submit" id="download-btn" name="download-btn">
                     <img class="img-download" src="{{ url_for('static', filename='Icons/download.png') }}">
                     Download
                 </button>
+
                 
             </form>
         </div>
@@ -491,9 +109,4 @@
     </footer>
     
 </body>
-
-
-
-
-
 </html>
